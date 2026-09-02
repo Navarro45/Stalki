@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stalki - Protótipo</title>
+  <link rel="stylesheet" href="stalki.css">
+
+</head>
+<body>
+  <main>
+    <section id="landing" class="screen landing active">
+      <div class="hero">
+        <img class="hero-logo" src="stalki_logo.jpeg" alt="Logo Stalki - informações que a internet tem sobre você" />
+        <div class="search-panel">
+          <div class="search-input"><span>⌕</span><input id="landingName" placeholder="Nome ou @instagram da pessoa" /></div>
+          <input id="photoInput" type="file" accept="image/*" hidden />
+          <button class="upload-btn" onclick="document.getElementById('photoInput').click()">⇧ &nbsp; Enviar foto</button>
+          <button class="primary-btn" onclick="startSearch()">Buscar agora</button>
+          <div class="legal">Apenas informações públicas e divulgáveis legalmente.</div>
+        </div>
+      </div>
+
+      <section class="info-section">
+        <div class="big-icon">⌕</div>
+        <h2 class="section-title">O que é?</h2>
+        <p class="intro">O Stalki é um aplicativo de pesquisa de pessoas que permite encontrar informações públicas sobre alguém a partir de uma foto. A proposta é facilitar a busca por perfis e informações disponíveis na internet de forma rápida e organizada.</p>
+      </section>
+
+      <section class="info-section">
+        <h2 class="section-title">Como Funciona!</h2>
+        <div class="stack how">
+          <article class="info-card"><div class="icon-box">♙+</div><h3>Crie sua conta</h3><p>O usuário cria uma conta e informa apenas os dados necessários para utilizar o aplicativo: nome, email, idade e Instagram (opcional).</p></article>
+          <article class="info-card"><div class="icon-box">♢</div><h3>Pesquisa segura</h3><p>Após realizar a pesquisa, o aplicativo procura correspondências em fontes públicas e apresenta somente informações que podem ser divulgadas legalmente.</p></article>
+        </div>
+      </section>
+
+      <section class="info-section">
+        <h2 class="section-title">Planos</h2>
+        <div class="plans">
+          <article class="plan-card"><h3>Plano gratuito</h3><div class="price">Grátis</div><ul class="feature-list"><li>1 uso disponível por conta</li><li>Nome público</li><li>Perfis públicos em redes sociais</li></ul><button class="secondary-btn" onclick="toast('Plano gratuito selecionado')">Escolher plano</button></article>
+          <article class="plan-card"><span class="badge">Mais popular</span><h3>Plano intermediário</h3><div class="price">R$ 5 /mês</div><ul class="feature-list"><li>Informações do plano gratuito</li><li>Mais opções de pesquisa</li><li>Maior quantidade de resultados</li></ul><button class="primary-btn" onclick="toast('Plano intermediário selecionado')">Escolher plano</button></article>
+          <article class="plan-card"><h3>Plano completo</h3><div class="price">R$ 10 /mês</div><ul class="feature-list"><li>Todos os recursos anteriores</li><li>Pesquisa mais ampla em fontes públicas</li><li>Organização dos resultados encontrados</li><li>Todas as informações públicas da Internet</li></ul><button class="secondary-btn" onclick="toast('Plano completo selecionado')">Escolher plano</button></article>
+        </div>
+        <div class="notice"><strong>Importante:</strong> o aplicativo não disponibilizará CPF, endereço, localização, placas de veículos ou outros dados pessoais sensíveis.</div>
+      </section>
+      <footer class="footer"><div class="brand footer-brand"><img class="brand-logo" src="stalki_logo.jpeg" alt="" aria-hidden="true"><span>STALKI</span></div><div>✦ Informações que a internet tem sobre você ✦</div><div class="footer-copy">© 2026 Stalki — apenas informações públicas.</div></footer>
+    </section>
+
+    <section id="search" class="screen">
+      <div class="shell"><header class="topbar"><div class="brand"><img class="brand-logo" src="stalki_logo.jpeg" alt="" aria-hidden="true"><span>STALKI</span></div><button class="top-icon" onclick="toast('Área protegida')">♢</button></header><div class="content">
+        <div class="app-search"><span>⌕</span><input id="searchName" value="Mariana" /><button class="small-btn" onclick="renderSearch()">Buscar</button></div>
+        <div class="results-head"><span id="resultCount">20 resultados encontrados</span><button class="link-btn" onclick="toast('Filtros demonstrativos')">☷ Filtros</button></div>
+        <div id="results" class="results"></div>
+      </div></div>
+    </section>
+
+    <section id="profile" class="screen">
+      <div class="shell"><header class="topbar"><div class="brand"><img class="brand-logo" src="stalki_logo.jpeg" alt="" aria-hidden="true"><span>STALKI</span></div><button class="top-icon">♢</button></header><div class="content">
+        <button class="back" onclick="showScreen('search')">← Voltar aos resultados</button>
+        <div class="profile-hero">
+          <img class="avatar round" src="https://i.pravatar.cc/200?img=47" alt="Mariana Almeida" />
+          <h2>Mariana Almeida</h2>
+          <div class="meta">▣ 27 anos &nbsp; ◉ São Paulo, SP</div>
+          <div class="bio">Designer de produto e criadora de conteúdo.<br>Apaixonada por fotografia e viagens.</div>
+          <div class="share"><button class="primary-btn" onclick="shareProfile()">⌯ &nbsp; Compartilhar perfil</button></div>
+        </div>
+        <h3 class="section-subtitle">Redes sociais</h3>
+        <div class="social-list">
+          <div class="social-row"><div class="social-logo">I</div><div><div class="social-name">Instagram</div><div class="social-detail">@mariana.design · 2.4k seguidores</div></div><div>↗</div></div>
+          <div class="social-row"><div class="social-logo">L</div><div><div class="social-name">LinkedIn</div><div class="social-detail">mariana-almeida · 1.3k seguidores</div></div><div>↗</div></div>
+          <div class="social-row"><div class="social-logo">T</div><div><div class="social-name">TikTok</div><div class="social-detail">@mari.design · 5.8k seguidores</div></div><div>↗</div></div>
+        </div>
+        <h3 class="section-subtitle">Informações encontradas</h3>
+        <div class="panel found-box"><div class="timeline">
+          <div class="timeline-item"><strong>Perfil público encontrado</strong><div>Instagram — 2.4k seguidores<br>01/09/2026</div></div>
+          <div class="timeline-item"><strong>Imagens públicas</strong><div>12 fotos indexadas<br>01/09/2026</div></div>
+          <div class="timeline-item"><strong>Menções em sites</strong><div>3 resultados em blogs<br>01/09/2026</div></div>
+          <div class="timeline-item"><strong>Redes sociais vinculadas</strong><div>3 perfis conectados<br>01/09/2026</div></div>
+        </div></div>
+      </div></div>
+    </section>
+
+    <section id="history" class="screen">
+      <div class="shell"><header class="topbar"><div class="brand"><img class="brand-logo" src="stalki_logo.jpeg" alt="" aria-hidden="true"><span>STALKI</span></div><button class="top-icon">♢</button></header><div class="content">
+        <div class="history-tools"><div><h1 class="page-title">Histórico de buscas</h1><p class="subtitle">Pessoas pesquisadas recentemente.</p></div><button class="clear-btn" onclick="clearHistory()">Limpar tudo</button></div>
+        <div class="app-search"><span>⌕</span><input id="historyFilter" placeholder="Buscar no histórico..." oninput="renderHistory()" /></div>
+        <div id="historyList" class="history-list"></div>
+        <div class="history-note">◷ Buscas mais antigas são removidas após 30 dias.</div>
+      </div></div>
+    </section>
+
+    <section id="account" class="screen">
+      <div class="shell"><header class="topbar"><div class="brand"><img class="brand-logo" src="stalki_logo.jpeg" alt="" aria-hidden="true"><span>STALKI</span></div><button class="top-icon">♢</button></header><div class="content">
+        <h1 class="page-title">Configurações</h1><p class="subtitle">Gerencie sua conta e preferências.</p>
+        <div class="panel"><div class="panel-title">♙ &nbsp; Dados pessoais</div>
+          <div class="field"><label>Nome completo</label><input value="Ana Silva" /></div>
+          <div class="field"><label>Email</label><input value="ana.silva@email.com" /></div>
+          <div class="field"><label>Idade</label><input value="24" /></div>
+          <div class="field"><label>Instagram (opcional)</label><input value="@ana.silva" /></div>
+          <button class="primary-btn save-btn" onclick="toast('Alterações salvas')">✓ &nbsp; Salvar alterações</button>
+        </div>
+        <div class="panel"><div class="panel-title">▣ &nbsp; Alterar senha</div>
+          <div class="field"><label>Senha atual</label><input type="password" /></div>
+          <div class="field"><label>Nova senha</label><input type="password" /></div>
+          <div class="field"><label>Confirmar nova senha</label><input type="password" /></div>
+          <button class="secondary-btn" onclick="toast('Senha atualizada')">Atualizar senha</button>
+        </div>
+        <div class="panel"><div class="panel-title">♧ &nbsp; Preferências de notificação</div>
+          <div class="toggle-row"><span>Novos resultados de busca</span><button class="toggle on" onclick="this.classList.toggle('on')"></button></div>
+          <div class="toggle-row"><span>Atualizações de perfis pesquisados</span><button class="toggle" onclick="this.classList.toggle('on')"></button></div>
+          <div class="toggle-row"><span>Novidades do Stalki</span><button class="toggle on" onclick="this.classList.toggle('on')"></button></div>
+        </div>
+        <button class="delete-account" onclick="toast('Ação de exclusão simulada')">Excluir minha conta</button>
+      </div></div>
+    </section>
+  </main>
+
+  <nav id="bottomNav" class="bottom-nav is-hidden">
+    <div class="bottom-nav-inner">
+      <button class="nav-btn" data-screen="landing" onclick="showScreen('landing')"><span class="ni">⌂</span><span>Início</span></button>
+      <button class="nav-btn" data-screen="search" onclick="showScreen('search')"><span class="ni">⌕</span><span>Buscar</span></button>
+      <button class="nav-btn" data-screen="history" onclick="showScreen('history')"><span class="ni">◷</span><span>Histórico</span></button>
+      <button class="nav-btn" data-screen="account" onclick="showScreen('account')"><span class="ni">⚙</span><span>Conta</span></button>
+    </div>
+  </nav>
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const people = [
+      {name:'Mariana Almeida', short:'Mariana Al...', match:'94%', job:'Designer de produto · 2.4k seguidores', city:'São Paulo, SP · 27 anos', social:['Instagram','LinkedIn','TikTok'], img:'https://i.pravatar.cc/160?img=47'},
+      {name:'Lucas Ferreira', short:'Lucas Ferreira', match:'88%', job:'Desenvolvedor backend · 540 contatos', city:'Rio de Janeiro, RJ · 32 anos', social:['YouTube','GitHub','TikTok','LinkedIn'], img:'https://i.pravatar.cc/160?img=13'},
+      {name:'Juliana Costa', short:'Juliana Costa', match:'87%', job:'Estudante de moda · 6.3k seguidores', city:'Belo Horizonte, MG · 23 anos', social:['TikTok','Instagram','YouTube'], img:'https://i.pravatar.cc/160?img=20'},
+      {name:'Rafael Souza', short:'Rafael Souza', match:'90%', job:'Engenheiro civil · 14k seguidores', city:'Curitiba, PR · 29 anos', social:['TikTok','Twitter','LinkedIn'], img:'https://i.pravatar.cc/160?img=27'},
+      {name:'Camila Oliveira', short:'Camila Oliv...', match:'82%', job:'Analista de dados · 8.9k seguidores', city:'Porto Alegre, RS · 28 anos', social:['YouTube','Instagram'], img:'https://i.pravatar.cc/160?img=34'},
+      {name:'Bruno Martins', short:'Bruno Martins', match:'89%', job:'Fotógrafa · 6.3k seguidores', city:'Salvador, BA · 31 anos', social:['Instagram','YouTube','Twitter','TikTok'], img:'https://i.pravatar.cc/160?img=41'},
+      {name:'Larissa Lima', short:'Larissa Lima', match:'83%', job:'Arquiteta · 11k seguidores', city:'Recife, PE · 30 anos', social:['Instagram','GitHub','Twitter','LinkedIn'], img:'https://i.pravatar.cc/160?img=48'},
+      {name:'Gabriel Rocha', short:'Gabriel Rocha', match:'83%', job:'Desenvolvedor mobile · 2.7k seguidores', city:'Campinas, SP · 33 anos', social:['Twitter','LinkedIn','TikTok','Instagram'], img:'https://i.pravatar.cc/160?img=55'},
+      {name:'Beatriz Barbosa', short:'Beatriz Bar...', match:'80%', job:'Publicitária · 890 seguidores', city:'Florianópolis, SC · 24 anos', social:['Twitter','Instagram','GitHub'], img:'https://i.pravatar.cc/160?img=62'},
+      {name:'Felipe Ribeiro', short:'Felipe Ribeiro', match:'83%', job:'Professor · 2.7k seguidores', city:'Brasília, DF · 31 anos', social:['Twitter','YouTube','TikTok','LinkedIn'], img:'https://i.pravatar.cc/160?img=69'},
+      {name:'Isabela Mendes', short:'Isabela Mendes', match:'77%', job:'UX Designer · 1.8k seguidores', city:'Fortaleza, CE · 24 anos', social:['YouTube','LinkedIn','TikTok','Twitter'], img:'https://i.pravatar.cc/160?img=7'},
+      {name:'Thiago Cardoso', short:'Thiago Cardoso', match:'82%', job:'Engenheira de software · 2.7k seguidores', city:'Goiânia, GO · 34 anos', social:['TikTok','Twitter','YouTube','GitHub'], img:'https://i.pravatar.cc/160?img=14'},
+      {name:'Amanda Nogueira', short:'Amanda Nogu...', match:'74%', job:'Jornalista · 2.7k seguidores', city:'Vitória, ES · 26 anos', social:['YouTube','Twitter','Instagram'], img:'https://i.pravatar.cc/160?img=21'},
+      {name:'Diego Teixeira', short:'Diego Teixeira', match:'79%', job:'Nutricionista · 6.3k seguidores', city:'Niterói, RJ · 29 anos', social:['YouTube','TikTok','LinkedIn','GitHub'], img:'https://i.pravatar.cc/160?img=28'},
+      {name:'Carolina Moreira', short:'Carolina Mo...', match:'72%', job:'Analista financeiro · 6.3k seguidores', city:'Santos, SP · 31 anos', social:['LinkedIn','Twitter','GitHub'], img:'https://i.pravatar.cc/160?img=35'},
+      {name:'Matheus Pereira', short:'Matheus Per...', match:'76%', job:'Ilustrador · 11k seguidores', city:'Maringá, PR · 26 anos', social:['GitHub','LinkedIn','Instagram'], img:'https://i.pravatar.cc/160?img=42'},
+      {name:'Renata Araújo', short:'Renata Araújo', match:'74%', job:'Pesquisadora · 890 seguidores', city:'João Pessoa, PB · 30 anos', social:['TikTok','Twitter','Instagram','LinkedIn'], img:'https://i.pravatar.cc/160?img=49'},
+      {name:'Gustavo Campos', short:'Gustavo Campos', match:'70%', job:'Videomaker · 11k seguidores', city:'Uberlândia, MG · 33 anos', social:['Twitter','GitHub'], img:'https://i.pravatar.cc/160?img=56'},
+      {name:'Natália Freitas', short:'Natália Fre...', match:'69%', job:'Product Manager · 2.7k seguidores', city:'Natal, RN · 25 anos', social:['LinkedIn','YouTube','Twitter'], img:'https://i.pravatar.cc/160?img=63'},
+      {name:'Vinícius Batista', short:'Vinícius Ba...', match:'73%', job:'Consultor de marketing · 8.9k seguidores', city:'Ribeirão Preto, SP · 32 anos', social:['YouTube','Instagram','Twitter'], img:'https://i.pravatar.cc/160?img=1'}
+    ];
+    let historyData = [
+      {name:'Mariana Almeida', date:'01/09/2026', results:'20 resultados', img:'https://i.pravatar.cc/160?img=47'},
+      {name:'Lucas Ferreira', date:'30/08/2026', results:'6 resultados', img:'https://i.pravatar.cc/160?img=12'},
+      {name:'Pedro Henrique', date:'28/08/2026', results:'2 resultados', img:'https://i.pravatar.cc/160?img=5'},
+      {name:'Juliana Costa', date:'25/08/2026', results:'3 resultados', img:'https://i.pravatar.cc/160?img=11'}
+    ];
+
+    function showScreen(id){
+      document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));
+      const nav=document.getElementById('bottomNav');
+      nav.classList.toggle('is-hidden', id==='landing');
+      document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));
+      if(id==='search') renderSearch();
+      if(id==='history') renderHistory();
+      window.scrollTo(0,0);
+    }
+
+    function startSearch(){
+      const q=document.getElementById('landingName').value.trim();
+      document.getElementById('searchName').value=q || 'Mariana';
+      showScreen('search');
+    }
+
+    function renderSearch(){
+      const q=document.getElementById('searchName').value.trim().toLowerCase();
+      const list=q && q!=='mariana' ? people.filter(p=>p.name.toLowerCase().includes(q)) : people;
+      document.getElementById('resultCount').textContent=`${list.length} resultados encontrados`;
+      document.getElementById('results').innerHTML=list.map((p,i)=>`
+        <article class="result-card">
+          <img class="avatar" src="${p.img}" alt="${p.name}">
+          <div><div class="result-name">${p.short}<span class="match">${p.match}</span></div><div class="meta">${p.job}<br>◉ ${p.city}</div><div class="social-mini">${p.social.map(s=>`<span>◎ ${s}</span>`).join('')}</div></div>
+          <button class="profile-btn" onclick="${p.name==='Mariana Almeida'?"showScreen('profile')":"toast('Perfil demonstrativo')"}">Ver perfil</button>
+        </article>`).join('') || `<div class="panel empty-state">Nenhum resultado encontrado.</div>`;
+    }
+
+    function renderHistory(){
+      const q=(document.getElementById('historyFilter')?.value||'').toLowerCase();
+      const list=historyData.filter(h=>h.name.toLowerCase().includes(q));
+      document.getElementById('historyList').innerHTML=list.map((h,i)=>`
+        <article class="history-card">
+          <img class="avatar" src="${h.img}" alt="${h.name}">
+          <div><strong>${h.name}</strong><div class="meta">${h.date} · ${h.results}</div></div>
+          <button class="icon-action" title="Pesquisar novamente" onclick="repeatSearch('${h.name}')">↻</button>
+          <button class="icon-action" title="Excluir" onclick="removeHistory('${h.name}')">♧</button>
+        </article>`).join('') || `<div class="panel empty-state">Histórico vazio.</div>`;
+    }
+
+    function repeatSearch(name){document.getElementById('searchName').value=name;showScreen('search')}
+    function removeHistory(name){historyData=historyData.filter(h=>h.name!==name);renderHistory();toast('Item removido')}
+    function clearHistory(){historyData=[];renderHistory();toast('Histórico limpo')}
+
+    function shareProfile(){
+      if(navigator.share){navigator.share({title:'Mariana Almeida - Stalki',text:'Perfil público demonstrativo no Stalki'}).catch(()=>{})}
+      else navigator.clipboard?.writeText(location.href).then(()=>toast('Link copiado')).catch(()=>toast('Compartilhamento simulado'));
+    }
+
+    let toastTimer;
+    function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),1800)}
+
+    document.getElementById('photoInput').addEventListener('change',e=>{if(e.target.files[0]) toast('Foto selecionada para pesquisa')});
+    renderSearch();renderHistory();
+  </script>
+</body>
+</html>
